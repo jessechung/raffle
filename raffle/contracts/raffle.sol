@@ -5,16 +5,16 @@ contract raffle {
     address public owner;
     uint public raffleEnd;
     uint public itemPrice;
+    address[] public arr;
     mapping(address => uint) rafflePot;
 
     //initializes raffle and sets owner and time left in the raffle
     function raffle(
-        address _owner,
         uint _raffleEnd,
         uint _itemPrice
     ) public 
     {
-        owner = _owner;
+        owner = msg.sender;
         //sets the end time for raffle
         raffleEnd = now + _raffleEnd;
         itemPrice = _itemPrice;
