@@ -37,7 +37,7 @@ contract Raffle {
     //enter the raffle
     function enterRaffle() public payable {
         //requires the money sent to be equal to the itemPrice
-        require(msg.value == itemPrice);
+        require(msg.value >= itemPrice);
         //requires the raffle to still be ongoing
         require(now <= raffleEnd);
         require(msg.sender != owner);
@@ -52,7 +52,7 @@ contract Raffle {
     }
 
     //returns money if they have it
-    function returnMoney() public returns (bool){
+    function returnMoney() public returns (bool) {
         
         require(now >= raffleEnd);
 
@@ -88,7 +88,7 @@ contract Raffle {
     }
 
     //generates a randomNumber 
-    function rand(uint min, uint max) private returns (uint){
+    function rand(uint min, uint max) private returns (uint) {
         return uint(sha3(seed))%(min+max)-min;
     }
 
